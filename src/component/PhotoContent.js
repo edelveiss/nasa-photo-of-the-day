@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../App.css";
+import DateChange from "./DateChange";
 import Header from "./Header";
+import Image from "./Image";
+import Explanation from "./Explanation";
+import Footer from "./Footer";
+
+import { Spinner } from "reactstrap";
+import styled from "styled-components";
 
 export default function PhotoContent() {
   const currentDate = () => {
@@ -26,60 +33,63 @@ export default function PhotoContent() {
   const [photos, setPhotos] = useState({});
   const [designedDate, setDesignedDate] = useState(curDate);
   const [videoUrl, setVideoUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${designedDate}`
       )
       .then(response => {
-        console.log(
-          "this is response: ",
-          response.data.date
-            .toString()
-            .substring(0, response.data.date.toString().length - 1)
-        );
-
+        setLoading(false);
         setPhotos(response.data);
       })
       .catch(error => console.log("the data was not returned", error));
   }, [designedDate]);
+
   let urlString = `${photos.url}`;
   let urlVideoString = "";
-  //   console.log(
-  //     "imageUrl: ",
-  //     urlString.substring(0, urlString.length - 4) + "autoplay=1"
-  //   );
+
   if (photos.media_type === "image") {
     isImg = true;
   } else {
     isImg = false;
     urlVideoString =
-      urlString.substring(0, urlString.length - 5) + "autoplay=1";
-    console.log(urlVideoString);
-    // console.log(
-    //   "image ",
-    //   photos.url.toString().substring(0, photos.url.toString().length - 4)
-    // );
+      urlString.substring(0, urlString.length - 5) + "autoplay=1&mute=1";
+    //console.log(urlVideoString);
   }
-  //console.log("url: ", photos);
+  //console.log("loading ", loading);
+  const changeDate = event => {
+    setDesignedDate(event.target.value);
+  };
 
   return (
     <div className="App-header">
-      <input
-        type="date"
-        value={photos.date}
-        onChange={event => setDesignedDate(event.target.value)}
-      />
+      <input type="date" value={photos.date} onChange={changeDate} />
+      {loading && (
+        <Spinner
+          type="grow"
+          color="secondary"
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)"
+          }}
+        />
+      )}
+      {/*<DateChange date={photos.date}/>*/}
 
-      <Header
+      <Header title={photos.title} />
+      <Image
         title={photos.title}
-        desc={photos.explanation}
         image={photos.url}
-        date={photos.date}
         imgVideo={isImg}
         videoLink={urlVideoString}
       />
+      <Explanation desc={photos.explanation} />
+      <Footer date={photos.date} />
     </div>
   );
 }

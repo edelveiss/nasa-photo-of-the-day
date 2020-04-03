@@ -1,10 +1,10 @@
 import React from "react";
 import "../App.css";
-const Footer = ({ date }) => {
+const Explanation = ({ desc }) => {
   return (
     <div className="content">
-      <p>{date}</p>
+      <p>{desc}</p>
     </div>
   );
 };
-export default Footer;
+export default Explanation;
