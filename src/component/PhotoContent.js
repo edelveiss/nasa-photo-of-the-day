@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../App.css";
-import DateChange from "./DateChange";
+//import DateChange from "./DateChange";
 import Header from "./Header";
 import Image from "./Image";
 import Explanation from "./Explanation";
 import Footer from "./Footer";
 
 import { Spinner } from "reactstrap";
-import styled from "styled-components";
+//import styled from "styled-components";
 
 export default function PhotoContent() {
   const currentDate = () => {
@@ -24,15 +24,15 @@ export default function PhotoContent() {
     if (mm < 10) {
       mm = "0" + mm;
     }
-    var today = yyyy + "-" + mm + "-" + dd;
-    return today;
+    var today1 = yyyy + "-" + mm + "-" + dd;
+    return today1;
   };
   let curDate = currentDate();
 
   let isImg = false;
   const [photos, setPhotos] = useState({});
   const [designedDate, setDesignedDate] = useState(curDate);
-  const [videoUrl, setVideoUrl] = useState("");
+  //const [videoUrl, setVideoUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ export default function PhotoContent() {
       )
       .then(response => {
         setLoading(false);
+        console.log(response.data);
         setPhotos(response.data);
       })
       .catch(error => console.log("the data was not returned", error));
@@ -66,7 +67,12 @@ export default function PhotoContent() {
 
   return (
     <div className="App-header">
-      <input type="date" value={photos.date} onChange={changeDate} />
+      <input
+        className="Input-date"
+        type="date"
+        value={photos.date}
+        onChange={changeDate}
+      />
       {loading && (
         <Spinner
           type="grow"
@@ -87,6 +93,7 @@ export default function PhotoContent() {
         image={photos.url}
         imgVideo={isImg}
         videoLink={urlVideoString}
+        copyright={photos.copyright}
       />
       <Explanation desc={photos.explanation} />
       <Footer date={photos.date} />

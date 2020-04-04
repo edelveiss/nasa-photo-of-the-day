@@ -1,11 +1,22 @@
 import React from "react";
 import "../App.css";
-const Image = ({ title, image, imgVideo, videoLink }) => {
+import styled from "styled-components";
+
+const Pcopyright = styled.p`
+  margin-top: -3rem;
+`;
+
+const ImageStyle = styled.img`
+  margin-top: -3rem;
+  z-index: -1;
+`;
+
+const Image = ({ title, image, imgVideo, videoLink, copyright }) => {
   return (
     <div className="content">
       <div className="picture">
         {imgVideo ? (
-          <img alt={title} src={image}></img>
+          <ImageStyle alt={title} src={image}></ImageStyle>
         ) : (
           <iframe
             width="957"
@@ -17,6 +28,7 @@ const Image = ({ title, image, imgVideo, videoLink }) => {
             title="video"
           ></iframe>
         )}
+        <Pcopyright>{copyright}</Pcopyright>
       </div>
     </div>
   );
