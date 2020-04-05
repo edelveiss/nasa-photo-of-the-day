@@ -3,11 +3,12 @@ import "../App.css";
 import styled from "styled-components";
 
 const DivFooter = styled.div`
-  margin: 1rem;
+  width: 500px;
 `;
 const DivContFooter = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Footer = ({ date }) => {

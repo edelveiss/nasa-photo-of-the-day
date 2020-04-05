@@ -5,7 +5,7 @@ import styled from "styled-components";
 const PExp = styled.p`
   margin-top: 3rem;
   padding: 2rem;
-  background: white;
+  background: #dfe2e5;
   color: black;
   border-top: 5px solid #f93f2e;
   border-bottom: 5px solid #f93f2e;

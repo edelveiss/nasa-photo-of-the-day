@@ -7,7 +7,7 @@ import Image from "./Image";
 import Explanation from "./Explanation";
 import Footer from "./Footer";
 
-import { Spinner } from "reactstrap";
+import { Spinner, UncontrolledTooltip } from "reactstrap";
 //import styled from "styled-components";
 
 export default function PhotoContent() {
@@ -41,12 +41,12 @@ export default function PhotoContent() {
       .get(
         `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${designedDate}`
       )
-      .then(response => {
+      .then((response) => {
         setLoading(false);
         console.log(response.data);
         setPhotos(response.data);
       })
-      .catch(error => console.log("the data was not returned", error));
+      .catch((error) => console.log("the data was not returned", error));
   }, [designedDate]);
 
   let urlString = `${photos.url}`;
@@ -61,18 +61,27 @@ export default function PhotoContent() {
     //console.log(urlVideoString);
   }
   //console.log("loading ", loading);
-  const changeDate = event => {
+  const changeDate = (event) => {
     setDesignedDate(event.target.value);
   };
 
   return (
     <div className="App-header">
       <input
+        id="UncontrolledTooltipExample"
         className="Input-date"
         type="date"
         value={photos.date}
         onChange={changeDate}
       />
+
+      {/* <UncontrolledTooltip
+        placement="right"
+        target="UncontrolledTooltipExample"
+      >
+        Choose the date
+     </UncontrolledTooltip>*/}
+
       {loading && (
         <Spinner
           type="grow"
@@ -81,7 +90,7 @@ export default function PhotoContent() {
             position: "fixed",
             top: "50%",
             left: "50%",
-            transform: "translate(-50%, -50%)"
+            transform: "translate(-50%, -50%)",
           }}
         />
       )}

@@ -7,7 +7,6 @@ const Pcopyright = styled.p`
 `;
 
 const ImageStyle = styled.img`
-  margin-top: -3rem;
   z-index: -1;
 `;
 
@@ -16,7 +15,7 @@ const Image = ({ title, image, imgVideo, videoLink, copyright }) => {
     <div className="content">
       <div className="picture">
         {imgVideo ? (
-          <ImageStyle alt={title} src={image}></ImageStyle>
+          <ImageStyle width="1000" alt={title} src={image}></ImageStyle>
         ) : (
           <iframe
             width="957"
@@ -28,7 +27,7 @@ const Image = ({ title, image, imgVideo, videoLink, copyright }) => {
             title="video"
           ></iframe>
         )}
-        <Pcopyright>{copyright}</Pcopyright>
+        {copyright ? <Pcopyright>{"By " + copyright}</Pcopyright> : null}
       </div>
     </div>
   );
