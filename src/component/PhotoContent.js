@@ -72,7 +72,7 @@ export default function PhotoContent() {
         id="UncontrolledTooltipExample"
         className="Input-date"
         type="date"
-        value={photos.date}
+        value={designedDate}
         onChange={changeDate}
       />
 
@@ -110,3 +110,5 @@ export default function PhotoContent() {
     </div>
   );
 }
+
+//value={photos.date}
