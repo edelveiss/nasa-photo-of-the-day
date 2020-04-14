@@ -28,6 +28,7 @@ export default function PhotoContent() {
     return today1;
   };
   let curDate = currentDate();
+  console.log("current date", curDate);
 
   let isImg = false;
   const [photos, setPhotos] = useState({});
@@ -75,13 +76,13 @@ export default function PhotoContent() {
         onChange={changeDate}
       />
 
-      {/* <UncontrolledTooltip
+      <UncontrolledTooltip
         placement="right"
         target="UncontrolledTooltipExample"
       >
         Choose the date
-     </UncontrolledTooltip>*/}
-
+      </UncontrolledTooltip>
+      {/* */}
       {loading && (
         <Spinner
           type="grow"
@@ -94,7 +95,7 @@ export default function PhotoContent() {
           }}
         />
       )}
-      {/*<DateChange date={photos.date}/>*/}
+      {/*  */}
 
       <Header title={photos.title} />
       <Image

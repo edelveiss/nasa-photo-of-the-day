@@ -3,7 +3,7 @@ import "../App.css";
 import styled from "styled-components";
 
 const H2Title = styled.h2`
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
 
 const Header = ({ title }) => {

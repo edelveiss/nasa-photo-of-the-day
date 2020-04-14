@@ -15,7 +15,7 @@ const Image = ({ title, image, imgVideo, videoLink, copyright }) => {
     <div className="content">
       <div className="picture">
         {imgVideo ? (
-          <ImageStyle width="1000" alt={title} src={image}></ImageStyle>
+          <ImageStyle width="800" alt={title} src={image}></ImageStyle>
         ) : (
           <iframe
             width="957"
