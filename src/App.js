@@ -5,8 +5,8 @@ import logo from "./assets/nasa-logo.png";
 import styled from "styled-components";
 
 const ImgMainTitle = styled.img`
-  margin-top: 3rem;
-  padding-left: 3rem;
+  margin-top: 2rem;
+  margin-left: 4rem;
 `;
 //<H1MainTitle>Astronomy Photo Of The Day</H1MainTitle>
 //https://fontmeme.com/permalink/200403/78045ed9ead72a613f549a5f6feb9cfd.png

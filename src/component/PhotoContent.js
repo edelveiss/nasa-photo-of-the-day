@@ -106,9 +106,10 @@ export default function PhotoContent() {
         copyright={photos.copyright}
       />
       <Explanation desc={photos.explanation} />
-      <Footer date={photos.date} />
+      <Footer date={curDate} />
     </div>
   );
 }
 
 //value={photos.date}
+//<Footer date={photos.date} />
